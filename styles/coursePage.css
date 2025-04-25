@@ -17,8 +17,13 @@
 body {
   font-family: "Inter", sans-serif;
   line-height: 1.6;
+  font-size: 1rem;
 }
-
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Helps prevent extra space below images */
+}
 /* Header styles */
 .header {
   background: #fff;
@@ -83,8 +88,10 @@ body {
   padding: 0.5rem 1rem 0.5rem 2.5rem;
   border: 1px solid rgba(51, 65, 85, 1);
   border-radius: 8px;
-  width: 600px;
+  width: 100%; /* Let the container control the width */
+  max-width: 600px; /* Optional: Set a max-width for larger screens */
   font-size: 14px;
+  min-width: 150px; /* Optional: Prevent it from becoming too small */
 }
 
 .search-bar input::placeholder {
@@ -121,7 +128,6 @@ body {
   justify-content: center;
 }
 
-
 /* Main content styles */
 .main-content-wrapper {
   background: rgba(248, 250, 252, 1);
@@ -134,7 +140,6 @@ body {
   width: 100%;
   background: rgba(248, 250, 252, 1);
 }
-
 
 /* Breadcrumb styles */
 .breadcrumb {
@@ -288,7 +293,8 @@ body {
 
 .nav-and-share {
   position: relative;
-  margin-top: 7rem;
+  margin-top: 3rem; /* Reduced margin */
+  width: 100%; /* Ensure it takes full width */
 }
 
 .nav-and-share::before {
@@ -301,6 +307,7 @@ body {
   height: 100%;
   background-color: #ffffff;
   z-index: 0;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05); /* Optional: add subtle shadow */
 }
 
 .nav-and-share > div {
@@ -309,15 +316,24 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+   /* Let the parent (.main-content) handle max-width and padding */
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 1.5rem 1rem; /* Consistent padding */
+   overflow-x: auto; /* Allow horizontal scroll if tabs don't fit */
+   scrollbar-width: none; /* Hide scrollbar for Firefox */
+   -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
 }
+.nav-and-share > div::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari/Opera */
+}
+
 .course-nav-tabs {
   display: flex;
-  gap: 2rem;
+  gap: 1rem; 
   background: transparent;
-  padding: 0;
-  border-bottom: 1px solid rgba(51, 65, 85, 0.2);
-  padding-bottom: 1rem;
+  padding-bottom: 0;
+  white-space: nowrap; 
 }
 
 .tab-btn {
@@ -410,8 +426,9 @@ body {
   margin-top: 2rem;
   padding-top: 1rem;
   border-top: 1px solid #ddd;
-  width: 300px;
-  margin: auto;
+   max-width: 300px; 
+   margin-left: auto; 
+   margin-right: auto; 
 }
 .share-section span {
   font-weight: 300;
@@ -440,16 +457,17 @@ body {
 
 /* Course Content Wrapper */
 .course-content-wrapper {
-  max-width: 800px;
+  width: 70%; 
   margin-left: 0;
   margin-right: auto;
-  padding: 0 2rem;
-  width: 100%;
+  padding: 0 1rem; 
 }
+
 
 /* Course Description Section */
 .course-description-section {
   margin: 2rem 0;
+  
 }
 
 .course-description-section h2,
@@ -494,7 +512,6 @@ body {
   object-fit: cover;
 }
 
-
 .instructor-stats {
   display: flex;
   flex-direction: column;
@@ -509,8 +526,8 @@ body {
 
 /* Syllabus Section */
 .syllabus-section {
-  max-width: 700px;
-}
+  width: 100%;
+ }
 
 .syllabus-section h2 {
   font-size: 1.5rem;
@@ -583,9 +600,9 @@ body {
   color: #1f2937;
 }
 .two-child-grid {
-  display: flex;
-  justify-content: space-between;
-  gap: 4rem;
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 2rem;
 }
 .overall-rating {
   font-weight: 600;
@@ -704,6 +721,7 @@ body {
 
 .testimonials-header {
   display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
@@ -744,16 +762,21 @@ body {
 .testimonial-slider {
   display: flex;
   gap: 1rem;
-  transition: transform 0.5s ease;
+ transition: transform 0.3s ease;
+}
+.testimonial-slider::-webkit-scrollbar {
+  display: none; 
 }
 
+
 .testimonial-card {
-  max-width: 400px;
-  flex-shrink: 0;
+  flex: 0 0 80%; 
+  max-width: 350px; 
+  scroll-snap-align: start; 
   background: #fff;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .quote-icon {
@@ -854,11 +877,11 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  justify-content: space-between;
 }
 
 .footer-col {
-  flex: 1 1 220px;
+  flex: 1 1 200px; 
+  min-width: 180px;
 }
 .footer-col-1 {
   flex: 1 1 400px;
@@ -873,7 +896,7 @@ body {
 }
 
 .footer-logo {
-  width: 28px; 
+  width: 28px;
   height: auto;
 }
 
@@ -919,10 +942,45 @@ body {
   object-fit: contain;
 }
 
-
 .with-border {
   border-bottom: 1px solid #ddd;
   padding-bottom: 1rem;
   margin-bottom: 2rem;
 }
 
+/* Give main content containers some padding */
+.main-content,
+.review-overview,
+.testimonials,
+.course-recommendation-section,
+.site-footer .footer-container { /* Target the inner container for footer */
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+/* Ensure containers don't exceed max width on large screens */
+.nav-container,
+.main-content, 
+.review-overview, 
+.testimonials,
+.course-recommendation-section, 
+.site-footer .footer-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@media (max-width: 768px) {
+  .course-content-wrapper {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Apply side-by-side layout for screens 768px and wider */
+@media (min-width: 768px) {
+  .two-child-grid {
+    grid-template-columns: 1fr 3fr;
+    gap: 3rem; 
+  }
+}
